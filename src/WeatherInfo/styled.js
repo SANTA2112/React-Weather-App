@@ -33,6 +33,7 @@ export const Temp = styled.div`
 
 export const Average = styled.div`
   font-size: 15px;
+  margin-left: 7px;
   &::after {
     content: '°С';
   }

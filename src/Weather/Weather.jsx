@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import MainBlock from '../MainBlock/';
-import { getWeather } from "../API";
+import { getCurrentWeather } from "../API";
 import { weatherIconType } from "../constants";
 import { Wrapper } from "./styled";
 
@@ -21,7 +21,8 @@ class Weather extends Component {
 
   getUserCoords() {
     window.navigator.geolocation.getCurrentPosition(({ coords }) => {
-      getWeather(coords.latitude, coords.longitude).then(weather => this.setState({ weather, image: this.takeWeatherIcon(weather.weather[0].icon) }));
+      const { city } = this.state;
+      getCurrentWeather('weather', city, coords.latitude, coords.longitude).then(weather => this.setState({ weather, image: this.takeWeatherIcon(weather.weather[0].icon) }));
     });
   }
 
@@ -33,7 +34,7 @@ class Weather extends Component {
     console.log(weather, image);
     return (
       <Wrapper>
-        {weather !== null && <MainBlock image={image} weather={weather}/>}
+        {weather !== null ? <MainBlock image={image} weather={weather}/> : <div>Не удалось загрузить данные с сервера</div>}
       </Wrapper>
     );
   }
