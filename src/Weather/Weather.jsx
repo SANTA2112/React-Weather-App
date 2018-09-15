@@ -1,33 +1,40 @@
-import React, { Component } from 'react';
+import React, { Component, PureComponent } from 'react';
 import MainBlock from '../MainBlock/';
-import { getWeather, kek } from "../API";
+import { getWeather } from "../API";
+import { weatherIconType } from "../constants";
 import { Wrapper } from "./styled";
-import default_weather_img from '../_assets/images/default_weather_img.jpg';
 
-class Weather extends Component {
+class Weather extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.takeWeatherIcon = this.takeWeatherIcon.bind(this);
+  }
   state = {
-    image: default_weather_img,
-    city: '',
+    image: weatherIconType[0].src,
+    weather: null,
+    city: null,
   }
 
   componentDidMount() {
-    this.getUserCoords();
+   this.getUserCoords();
   }
 
   getUserCoords() {
     window.navigator.geolocation.getCurrentPosition(({ coords }) => {
-      getWeather(coords.latitude, coords.longitude);
+      getWeather(coords.latitude, coords.longitude).then(weather => this.setState({ weather, image: this.takeWeatherIcon(weather.weather[0].icon) }));
     });
   }
 
-  render() {
-    const { image } = this.state;
+  takeWeatherIcon = (image) => weatherIconType.filter(el => el.type === image).pop().src;
 
+
+  render() {
+    const { image, weather } = this.state;
+    console.log(weather, image);
     return (
       <Wrapper>
-        <MainBlock image={image}/>
+        {weather !== null && <MainBlock image={image} weather={weather}/>}
       </Wrapper>
-
     );
   }
 }
