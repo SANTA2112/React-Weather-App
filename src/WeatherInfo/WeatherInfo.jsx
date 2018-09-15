@@ -23,5 +23,4 @@ export default ({ weather }) => {
       <Sunset>Закат: {renderDate(weather.sys.sunset)}</Sunset>
     </Wrapper>
   );
-
 };
