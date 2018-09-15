@@ -1,10 +1,10 @@
-import React, { Component, PureComponent } from 'react';
+import React, { Component } from 'react';
 import MainBlock from '../MainBlock/';
 import { getWeather } from "../API";
 import { weatherIconType } from "../constants";
 import { Wrapper } from "./styled";
 
-class Weather extends PureComponent {
+class Weather extends Component {
   constructor(props) {
     super(props);
     this.takeWeatherIcon = this.takeWeatherIcon.bind(this);
