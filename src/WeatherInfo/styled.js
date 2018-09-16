@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
-  position: relative;
-  padding: 25px 0 25px 50px;
-  color: #fff;
-`;
+export const Wrapper = styled.div``;
 
 export const City = styled.h2`
   font-size: 36px;

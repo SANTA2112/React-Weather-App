@@ -16,3 +16,9 @@ export const Block = styled.div`
     display: block;
   }
 `;
+
+export const LeftSide = styled.div`
+  position: relative;
+  padding: 25px 0 25px 50px;
+  color: #fff;
+`;

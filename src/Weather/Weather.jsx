@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import MainBlock from '../MainBlock/';
-import { getCurrentWeather } from "../API";
+import { getWeather } from "../API";
 import { weatherIconType } from "../constants";
 import { Wrapper } from "./styled";
 
@@ -12,17 +12,19 @@ class Weather extends Component {
   state = {
     image: weatherIconType[0].src,
     weather: null,
+    weatherOnWeek: null,
     city: null,
   }
 
   componentDidMount() {
-   this.getUserCoords();
+    this.getUserCoords();
   }
 
   getUserCoords() {
     window.navigator.geolocation.getCurrentPosition(({ coords }) => {
       const { city } = this.state;
-      getCurrentWeather('weather', city, coords.latitude, coords.longitude).then(weather => this.setState({ weather, image: this.takeWeatherIcon(weather.weather[0].icon) }));
+      getWeather('weather', city, coords.latitude, coords.longitude).then(weather => this.setState({ weather, image: this.takeWeatherIcon(weather.weather[0].icon) }));
+      getWeather('forecast', city, coords.latitude, coords.longitude).then(weatherOnWeek => this.setState({ weatherOnWeek }));
     });
   }
 
@@ -30,11 +32,11 @@ class Weather extends Component {
 
 
   render() {
-    const { image, weather } = this.state;
-    console.log(weather, image);
+    const { image, weather, weatherOnWeek } = this.state;
+    console.log(weatherOnWeek);
     return (
       <Wrapper>
-        {weather !== null ? <MainBlock image={image} weather={weather}/> : <div>Не удалось загрузить данные с сервера</div>}
+        {weather !== null ? <MainBlock image={image} weather={weather} weatherOnWeek={weatherOnWeek}/> : <div>Не удалось загрузить данные с сервера</div>}
       </Wrapper>
     );
   }

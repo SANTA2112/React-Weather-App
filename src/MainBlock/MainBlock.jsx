@@ -1,10 +1,14 @@
 import React from 'react';
-import WeatherInfo from '../WeatherInfo/'
-import { Block } from './styled';
+import WeatherInfo from '../WeatherInfo/';
+import WeatherWeek from '../WeatherWeek/';
+import { Block, LeftSide } from './styled';
 
-export default ({ image, weather }) => (
+export default ({ image, weather, weatherOnWeek }) => (
   <div>
     <Block image={image}/>
-    <WeatherInfo weather={weather}/>
+    <LeftSide>
+      <WeatherInfo weather={weather}/>
+      <WeatherWeek weatherOnWeek={weatherOnWeek}/>
+    </LeftSide>
   </div>
 );
