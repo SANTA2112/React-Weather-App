@@ -39,3 +39,21 @@ export const weatherIconType = [
   {type: '50d', src: mist},
   {type: '50n', src: nightMist},
 ];
+
+export const convertDate = (stringDate) => {
+  const date = new Date(stringDate);
+  const day = date.getDay();
+  const dayOfWeek = {
+    0: 'Вс',
+    1: 'Пн',
+    2: 'Вт',
+    3: 'Ср',
+    4: 'Чт',
+    5: 'Пт',
+    6: 'Сб',
+  };
+
+  return `${dayOfWeek[day]} ${date.toLocaleDateString().slice(0, -5)}`;
+}
+
+export const getCurrentCoordnates = () => new Promise(r => window.navigator.geolocation.getCurrentPosition(({ coords }) => r(coords)));
