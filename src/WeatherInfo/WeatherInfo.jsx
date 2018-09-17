@@ -12,7 +12,7 @@ export default ({ weather }) => {
       <City>{weather.name}</City>
       <TepmBlock>
         <Temp>{weather.main.temp}</Temp>
-        <Average>{weather.main.temp_min} / {weather.main.temp_max}</Average>
+        <Average>{weather.main.temp_min} / {weather.main.temp_max + " "}</Average>
       </TepmBlock>
       <WeatherDesc>{weather.weather[0].description}</WeatherDesc>
       <Cloudiness>Облачность: {weather.clouds.all} %</Cloudiness>

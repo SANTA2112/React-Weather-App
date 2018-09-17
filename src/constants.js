@@ -1,4 +1,3 @@
-import defaultImg from './_assets/images/default_weather_img.jpg';
 import sun from './_assets/images/01d.jpg';
 import night from './_assets/images/01n.jpeg';
 import someClounds from './_assets/images/02d.jpeg';
@@ -18,27 +17,29 @@ import nightSnow from './_assets/images/13n.jpg';
 import mist from './_assets/images/50d.jpg';
 import nightMist from './_assets/images/50n.jpg';
 
-export const weatherIconType = [
-  {type: 'default', src: defaultImg},
-  {type: '01d', src: sun},
-  {type: '01n', src: night},
-  {type: '02d', src: someClounds},
-  {type: '02n', src: someCloundsNight},
-  {type: '03d', src: scatteredClouds},
-  {type: '03n', src: scatteredCloudsNight},
-  {type: '04d', src: overcast},
-  {type: '04n', src: overcastNight},
-  {type: '09d', src: showerRain},
-  {type: '09n', src: showerRainNight},
-  {type: '10d', src: rain},
-  {type: '10n', src: nightRain},
-  {type: '11d', src: thunderstorm},
-  {type: '11n', src: nightThunderstorm},
-  {type: '13d', src: snow},
-  {type: '13n', src: nightSnow},
-  {type: '50d', src: mist},
-  {type: '50n', src: nightMist},
-];
+export const takeWeatherIcon = (icon) => {
+  const weatherIconType = [
+    {'01d': sun},
+    {'01n': night},
+    {'02d': someClounds},
+    {'02n': someCloundsNight},
+    {'03d': scatteredClouds},
+    {'03n': scatteredCloudsNight},
+    {'04d': overcast},
+    {'04n': overcastNight},
+    {'09d': showerRain},
+    {'09n': showerRainNight},
+    {'10d': rain},
+    {'10n': nightRain},
+    {'11d': thunderstorm},
+    {'11n': nightThunderstorm},
+    {'13d': snow},
+    {'13n': nightSnow},
+    {'50d': mist},
+    {'50n': nightMist},
+  ];
+  return weatherIconType[icon];
+};
 
 export const convertDate = (stringDate) => {
   const date = new Date(stringDate);

@@ -12,7 +12,7 @@ class SeachBar extends Component {
     return (
       <div>
         <input value={this.state.value} onChange={e => this.setState({ value: e.target.value })}/>
-        <button onClick={() => this.props.getCoords(this.state.value)}>Search</button>
+        <button onClick={() => {this.props.getCoords(this.state.value); this.props.takeQuery(this.state.value)}}>Search</button>
       </div>
     );
   }

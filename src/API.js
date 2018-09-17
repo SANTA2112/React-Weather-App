@@ -10,7 +10,7 @@ export const getWeather = (type, city, lat, log) => {
     : getJSON(`${API_URL}${type}?lat=${lat}&lon=${log}&units=metric&lang=ru${API_KEY}`);
 }
 
-export const forecastWeather = (lat, lon) => getJSON(`https://cors-anywhere.herokuapp.com/https://api.weather.yandex.ru/v1/forecast?lat=${lat}&lon=${lon}&hours=false&limit=3&extra=false&lang=ru_RU`, {
+export const forecastWeather = (lat, lon) => getJSON(`https://cors-anywhere.herokuapp.com/https://api.weather.yandex.ru/v1/forecast?lat=${lat}&lon=${lon}&hours=false&limit=4&extra=false&lang=ru_RU`, {
   headers: {
     "X-Yandex-API-Key": "978457a4-f5ee-4173-8f47-3096615d5e4c"
   }

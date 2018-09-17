@@ -20,4 +20,6 @@ export const Text = styled.p`
 
 export const TextWrap = styled.div``;
 
-export const WeatherWrap = styled.div``;
+export const WeatherWrap = styled.div`
+  display: flex;
+`;

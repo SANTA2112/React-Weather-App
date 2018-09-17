@@ -2,16 +2,13 @@ import React, { Component } from 'react';
 import MainBlock from '../MainBlock/';
 import SearchBar from '../SearchBar/';
 import { getWeather, forecastWeather } from "../API";
-import { weatherIconType, getCurrentCoordnates } from "../constants";
+import { weatherIconType, getCurrentCoordnates, takeWeatherIcon } from "../constants";
 import { Wrapper } from "./styled";
 
 class Weather extends Component {
-  constructor(props) {
-    super(props);
-    this.takeWeatherIcon = this.takeWeatherIcon.bind(this);
-  }
+
   state = {
-    image: weatherIconType[0].src,
+    image: null,
     weather: null,
     weatherOnWeek: null,
     city: null,
@@ -29,7 +26,6 @@ class Weather extends Component {
   searchWeather = () => this.doRequest(this.state.lat, this.state.lng);
 
 
-  takeWeatherIcon = (image) => weatherIconType.filter(el => el.type === image)[0].src;
 
   takeQuery = (value) => {
     if (this.state.searchQueryes.includes(value))
@@ -46,12 +42,13 @@ class Weather extends Component {
 
   doRequest(lat, lng) {
     const { city } = this.state;
-    getWeather('weather', city, lat, lng).then(weather => this.setState({ weather, image: this.takeWeatherIcon(weather.weather[0].icon) }));
+    getWeather('weather', city, lat, lng).then(weather => this.setState({ weather, image: takeWeatherIcon(weather.weather[0].icon) }));
     forecastWeather(lat, lat).then(weatherOnWeek => this.setState({ weatherOnWeek }));
   }
 
   render() {
     const { image, weather, weatherOnWeek } = this.state;
+    console.log(weatherOnWeek);
     return (
       <Wrapper>
         {weather !== null ? <MainBlock image={image} weather={weather} weatherOnWeek={weatherOnWeek}/> : <div>Не удалось загрузить данные с сервера</div>}
