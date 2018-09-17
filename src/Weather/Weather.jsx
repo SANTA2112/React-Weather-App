@@ -5,6 +5,8 @@ import { getWeather, forecastWeather } from "../API";
 import { weatherIconType, getCurrentCoordnates, takeWeatherIcon } from "../constants";
 import { Wrapper } from "./styled";
 
+import Loader from '../Loader/Loader';
+
 class Weather extends Component {
 
   state = {
@@ -14,7 +16,8 @@ class Weather extends Component {
     city: null,
     searchQueryes: [],
     lat: null,
-    lng: null
+    lng: null,
+    isLoaded: false,
   }
 
   componentDidMount() {
@@ -39,18 +42,20 @@ class Weather extends Component {
   });
 
   doRequest(lat, lng) {
+    this.setState({ isLoaded: false })
     const { city } = this.state;
-    getWeather('weather', city, lat, lng).then(weather => this.setState({ weather, image: takeWeatherIcon(weather.weather[0].icon) }));
-    forecastWeather(lat, lat).then(weatherOnWeek => this.setState({ weatherOnWeek }));
+    Promise.all([getWeather('weather', city, lat, lng).then(weather => (this.setState({ weather, image: takeWeatherIcon(weather.weather[0].icon) }), Promise.resolve())),
+    forecastWeather(lat, lat).then(weatherOnWeek => (this.setState({ weatherOnWeek }), Promise.resolve()))]).then(_ => this.setState({ isLoaded: true }))
   }
 
   render() {
-    const { image, weather, weatherOnWeek } = this.state;
+    const { image, weather, weatherOnWeek, searchQueryes, isLoaded } = this.state;
     console.log(weatherOnWeek);
+    if (!isLoaded) return <Loader />
     return (
       <Wrapper>
         {weather !== null ? <MainBlock image={image} weather={weather} weatherOnWeek={weatherOnWeek}/> : <div>Не удалось загрузить данные с сервера</div>}
-        <SearchBar takeQuery={this.takeQuery} getCoords={this.getCoords}/>
+        <SearchBar takeQuery={this.takeQuery} getCoords={this.getCoords} searchQueryes={searchQueryes}/>
       </Wrapper>
     );
   }

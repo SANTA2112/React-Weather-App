@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   border-radius: 4px;
   position: relative;
   padding: 5px;
-  display: flex;
+  display: inline-flex;
   color: #fff;
   background: rgba(0,0,0,.3);
   margin-top: 50px;
