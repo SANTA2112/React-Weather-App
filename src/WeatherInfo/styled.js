@@ -15,9 +15,9 @@ export const TepmBlock = styled.div`
 
 export const Temp = styled.div`
   font-size: 56px;
-  font-weight: 600;
   position: relative;
   display: flex;
+  font-family: 'Open Sans Semibold';
   &::after {
     content: '°С';
     position: absolute;

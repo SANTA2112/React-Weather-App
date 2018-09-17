@@ -3,9 +3,9 @@ import { render } from 'react-dom';
 import './_assets/css/global.css';
 import '@babel/polyfill';
 
-import App from './App';
+import Weather from './Weather';
 
 render(
-  <App />,
+  <Weather />,
   document.querySelector('#app')
 );

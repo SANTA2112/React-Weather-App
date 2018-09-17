@@ -1,6 +1,6 @@
 import React from 'react';
 import { convertDate } from "../constants";
-import { Wrapper, TextBlock, Text, TextWrap, WeatherWrap } from "./styled";
+import { Wrapper, TextBlock, Text, TextWrap, WeatherWrap, Date, DayTemp, NightTemp, UL, SmallSpan, BoldSpan } from "./styled";
 
 export default ({ weatherOnWeek }) => {
 
@@ -18,14 +18,14 @@ export default ({ weatherOnWeek }) => {
       </TextWrap>
       <WeatherWrap>
         { weatherOnWeek && weatherOnWeek.forecasts.map(el => (
-        <div key={el.date_ts}>
-          <div>{convertDate(el.date)}</div>
-          <div>{el.parts.day.temp_min} / {el.parts.day.temp_max}</div>
-          <div>{el.parts.night.temp_avg}</div>
-          <div>{el.parts.day.condition}</div>
-          <div>{el.parts.day.wind_dir}: {el.parts.day.wind_speed} м/с</div>
-          <div>{el.parts.day.pressure_mm} мм.рт.ст</div>
-        </div>)) }
+        <UL key={el.date_ts}>
+          <Date>{convertDate(el.date)}</Date>
+          <DayTemp>{el.parts.day.temp_min} / {el.parts.day.temp_max}</DayTemp>
+          <NightTemp>{el.parts.night.temp_avg}</NightTemp>
+          <li><SmallSpan>{el.parts.day.condition}</SmallSpan></li>
+          <li><BoldSpan>{el.parts.day.wind_dir}</BoldSpan>: <SmallSpan>{el.parts.day.wind_speed} м/с</SmallSpan></li>
+          <li>{el.parts.day.pressure_mm} <SmallSpan>мм.рт.ст</SmallSpan></li>
+        </UL>)) }
       </WeatherWrap>
     </Wrapper>
   );
