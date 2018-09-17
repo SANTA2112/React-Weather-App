@@ -18,26 +18,26 @@ import mist from './_assets/images/50d.jpg';
 import nightMist from './_assets/images/50n.jpg';
 
 export const takeWeatherIcon = (icon) => {
-  const weatherIconType = [
-    {'01d': sun},
-    {'01n': night},
-    {'02d': someClounds},
-    {'02n': someCloundsNight},
-    {'03d': scatteredClouds},
-    {'03n': scatteredCloudsNight},
-    {'04d': overcast},
-    {'04n': overcastNight},
-    {'09d': showerRain},
-    {'09n': showerRainNight},
-    {'10d': rain},
-    {'10n': nightRain},
-    {'11d': thunderstorm},
-    {'11n': nightThunderstorm},
-    {'13d': snow},
-    {'13n': nightSnow},
-    {'50d': mist},
-    {'50n': nightMist},
-  ];
+  const weatherIconType = {
+    '01d': sun,
+    '01n': night,
+    '02d': someClounds,
+    '02n': someCloundsNight,
+    '03d': scatteredClouds,
+    '03n': scatteredCloudsNight,
+    '04d': overcast,
+    '04n': overcastNight,
+    '09d': showerRain,
+    '09n': showerRainNight,
+    '10d': rain,
+    '10n': nightRain,
+    '11d': thunderstorm,
+    '11n': nightThunderstorm,
+    '13d': snow,
+    '13n': nightSnow,
+    '50d': mist,
+    '50n': nightMist
+  }
   return weatherIconType[icon];
 };
 

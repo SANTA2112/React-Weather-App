@@ -25,8 +25,6 @@ class Weather extends Component {
 
   searchWeather = () => this.doRequest(this.state.lat, this.state.lng);
 
-
-
   takeQuery = (value) => {
     if (this.state.searchQueryes.includes(value))
       this.setState(p => ({ searchQueryes: p.searchQueryes.filter(el => el != value) }));
